@@ -211,7 +211,11 @@ construct_command_line(struct manager_ctx *manager, struct server *server)
         int len = strlen(cmd);
         snprintf(cmd + len, BUF_SIZE - len, " --reuse-port");
     }
-
+    // Enable tcp nodelay
+    {
+        int len = strlen(cmd);
+        snprintf(cmd + len, BUF_SIZE - len, " --no-delay");
+    }
     if (verbose) {
         LOGI("cmd: %s", cmd);
     }
